@@ -1,5 +1,5 @@
-describe("login test", () => {
-  it("login", () => {
+describe("home test", () => {
+  it("home", () => {
     cy.visit("http://localhost:3000/");
     cy.get('[data-test="loginHeader"]').should("be.visible").contains("recipe");
     cy.get('[data-test="loginName"]').should("be.visible").type("Anthony");
