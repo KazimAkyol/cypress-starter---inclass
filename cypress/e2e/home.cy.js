@@ -1,12 +1,34 @@
 describe("home test", () => {
-  it("home", () => {
+  beforeEach(() => {
     cy.visit("http://localhost:3000/");
-    cy.get('[data-test="loginHeader"]').should("be.visible").contains("recipe");
-    cy.get('[data-test="loginName"]').should("be.visible").type("Anthony");
-    cy.get('[data-test="loginPassword"]')
+    cy.viewport(1200, 1200);
+  });
+  it("home", () => {
+    cy.login();
+    cy.get("[data-test='homeAbout']")
+      .contains("About")
       .should("be.visible")
-      .type("Clarusway");
-    cy.get('[data-test="loginSbmt"]').should("be.visible").click();
+      .click({ force: true });
+    cy.url().should("include", "/about");
+    cy.get("[data-test='homeLogo']")
+      .contains("<Anthony/>")
+      .should("be.visible")
+      .click({ force: true });
     cy.url().should("include", "/home");
+    cy.get("[data-test='recipeHeader']")
+      .contains("Welcome to my")
+      .should("be.visible");
+    cy.get("[data-test='recipeSubHeader']")
+      .contains("Food App")
+      .should("be.visible");
+    cy.get("[data-test='homeSearch']").type("r");
+    cy.get("[data-test='homeSearchBtn']").click({ force: true });
+    cy.get("[data-test='cardHeader']").should("be.visible");
+    cy.get("[data-test='cardImage']").should("be.visible");
+    cy.get("[data-test='cardBtn']")
+      .should("be.visible")
+      .first()
+      .click({ force: true });
+    cy.url().should("include", "/details");
   });
 });

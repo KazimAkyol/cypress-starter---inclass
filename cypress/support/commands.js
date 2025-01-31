@@ -25,8 +25,8 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add("login", () => {
   cy.url().should("include", "/");
-  cy.get('[data-test="loginName"]').should("be.visible").type("asp");
-  cy.get('[data-test="loginPassword"]').should("be.visible").type("Clarusway7");
+  cy.get('[data-test="loginName"]').should("be.visible").type("Anthony");
+  cy.get('[data-test="loginPassword"]').should("be.visible").type("Clarusway");
   cy.get('[data-test="loginSbmt"]').should("be.visible").click({ force: true });
   cy.url().should("include", "/home");
 });
